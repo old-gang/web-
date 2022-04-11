@@ -714,8 +714,11 @@ CSS选择器是CSS规则的一部分。它是元素和其他部分组合起来�
   >
   >  记忆法：**l**o**v**e **ha**te。
 
+  
+
+  > **当直接给a{属性：属性值；}时，这里的样式包含了这四个状态效果；**
+
   ```css
-  当给a{属性：属性值；}时，这里的样式包含了这四个状态效果；
   style{
       a {color: gray;}
   }
@@ -945,10 +948,12 @@ CSS中的继承: 子标签会继承父标签的某些样式，如文本颜色和
   }
   ```
 
-  | 属性值     | 描述                                  |
-  | ------- | ----------------------------------- |
-  | normal  | 默认值（不加粗）                            |
-  | bold    | 定义粗体（加粗）                            |
+  | 属性值  | 描述                                                   |
+  | ------- | ------------------------------------------------------ |
+  | lighter | 极细的(100 - 300)                                      |
+  | normal  | 默认值（不加粗）                                       |
+  | bold    | 定义粗体（加粗）                                       |
+  | bolder  | 更粗的(800 - 900)                                      |
   | 100~900 | 400等同于normal，而700等同于bold，注意数字后面不跟单位 |
 
 + 说明：
@@ -1009,8 +1014,22 @@ CSS中的继承: 子标签会继承父标签的某些样式，如文本颜色和
 + 说明：
 
   + 我们在写的时候一般使用的是字体的英文名字，为了规避乱码的风险。
-  + 设定的字体如果名字包含空格，则应该使用单引号包裹起来。
+  + 设定的字体如果名字包含**汉字、多个英文单词、Unicode编码**，则应该使用单引号包裹起来。
   + 可以定义多个字体，多个字体将按照列表中列出来顺序逐个查找，只要找到了一个就去应用如果到最后都没有找到name将会使用浏览器的默认字体（windows系统中，默认的字体就是微软雅黑）。
+  
++ 注：
+
+  + 中文字体对英文字体也是起作用的；
+  + 英文字体对中文字体不起作用；
+  + 有英文字体时，写在前面
+
+>  一些小常识：
+>
+> serif:	衬线字体
+>
+> sans-serif：无衬线字体，笔画结尾是平滑的字体
+>
+> monospace：等宽字体
 
 #### 1.6、字体的综合写法
 
@@ -1020,7 +1039,18 @@ CSS中的继承: 子标签会继承父标签的某些样式，如文本颜色和
 body {font: font-style  font-weight  font-size/line-height  font-family;}
 ```
 
-使用 font 属性时，必须按上面语法格式中的顺序书写，不能更换顺序，并且各个属性间以空格隔开 不需要设置的属性可以省略（取默认值），但必须保留 font-size 和 font-family 属性，否则 font 属性将不起作用。
+**注意：** 
+
+> 1、必须同时具有size和family的时候才能使用复合式属性font;
+> 2、size和family必须要写在所有属性值的后面，并且要先写size，后写family；
+>
+> 3、也可以将行高写在font-size后，用 / 隔开，可以写具体数值，也可以写倍数(写倍数不加单位)
+>
+> 4、最常用的就是通过font属性一起设置字号和字体，一般在全局样式的时候使用；
+>
+> 5、复合式属性中，没写的属性是默认值
+>
+> 6、**当复合属性和单个属性在一起使用时，要先写复合式属性**
 
 #### 1.7、字体总结
 
@@ -1058,7 +1088,7 @@ body {font: font-style  font-weight  font-size/line-height  font-family;}
   + 开发中最常用的是十六进制
   + rgba，格式`rgba(红,绿,蓝,透明度)`，多了一个透明度，透明度是0~1之间的值，0为完全透明，值越大越不透明。可以直接用`.n`的形式来表示，如：`.5`
 
-#### 2.2、文本对齐1
+#### 2.2、水平对齐
 
 + 概念：text-align 属性用于设置元素内文本内容的水平对齐方式
 
@@ -1070,15 +1100,17 @@ body {font: font-style  font-weight  font-size/line-height  font-family;}
   }
   ```
 
-  | 属性值    | 描述       |
-  | ------ | -------- |
-  | left   | 左对齐（默认值） |
-  | right  | 右对齐      |
-  | center | 居中对齐     |
+  | 属性值                  | 描述                     |
+  | ----------------------- | ------------------------ |
+  | left                    | 左对齐（默认值）         |
+  | right                   | 右对齐                   |
+  | center                  | 居中对齐                 |
+  | justify                 | 两端对齐(最后一行不生效) |
+  | text-align-last:justify | 强制最后一行两端对齐     |
 
-#### 2.3、文本对齐2
+#### 2.3、垂直对齐
 
-+ 概念：vertical-align属性用于设置元素内文本内容的垂直对齐方式
++ 概念：vertical-align属性用于设置元素内文本内容的垂直对齐方式(没有继承性，写给谁谁生效)
 
 + 语法：
 
@@ -1099,15 +1131,23 @@ body {font: font-style  font-weight  font-size/line-height  font-family;}
   | super       | 垂直对齐文本的上标                                |
   | baseline    | 将支持valign特性的对象的内容与基线对齐， **基线**“baseline”并不是汉字文字的下端沿，而是英文字母的下端沿。 |
 
+> **注：**
+>
+> ​		  1、不是所有的元素都可以应用垂直对齐属性；可以对一些特殊的元素起作用：td img input,textarea select 
+>
+> ​          2、有**文字时插入图片**后，**下端有空白**，可以将图片的垂直对齐属性设置为除了基线对齐都可以
+>
+> ​          3、这个属性没有继承性；写给谁谁生效
+
 #### 2.4、修饰文本
 
-+ 概念：text-decoration属性用于设置文本的修饰的属性
++ 概念：text-decoration属性用于设置文本的修饰的属性(这是一个复合属性)
 
 + 语法：
 
   ```css
   div { 
-      text-decoration：underline;
+      text-decoration：underline pink dashed;
   }
   ```
 
@@ -1120,6 +1160,16 @@ body {font: font-style  font-weight  font-size/line-height  font-family;}
 
 
 > 重点记住如何添加下划线 ? 如何删除下划线 ? 其余了解即可.
+
+```css
+text-decoration-color: ;
+<!--默认和文本颜色一样-->
+
+text-decoration-style: ;
+<！--solid、dashed、dotted、double……-->
+```
+
+
 
 #### 2.5、文本缩进
 
@@ -1151,64 +1201,57 @@ body {font: font-style  font-weight  font-size/line-height  font-family;}
   - normal，相当于`letter-spacing:0`
   - px，像素
 
-#### 2.7、换行
+#### 2.7、换行(剩余空间显示)
 
 + 概念：white-space属性用于设置文本的换行的属性
++ 属性值：
 
-+ 语法：
+```css
+normal：	 默认值，多余空白会被浏览器忽略只保留一个；
+pre：	 空白会被浏览器保留，不换行；
+pre-wrap：保留一部分空白符序列，但是正常的进行换行；
+pre-line：合并空格，但是保留换行符；
+nowrap：	 文本不会换行，文本会在同一行上继续，直到遇到<br/>标签为止;(记住)  
+```
 
-  ```css
-  div { 
-  	width: 50px;
-  	height: 50px;
-  	border: aqua solid 1px;
-  	white-space:nowrap;/*用来处理元素内文本是否允许换行。*/
-  }
-  ```
-
-  - normal，默认值。`CJK文本`遇到容器便捷自动换行，非`CJK文本`由word-break来决定。
-
-    CJK：`China`、`Japan`、`Korea`，中日韩三国的文字。
-
-  - nowrap，超出容器边界不换行。
-
-  ```css
-  div { 
-  	width: 50px;
-  	height: 50px;
-  	border: aqua solid 1px;
-  	word-break:break-all;
-  }
-  ```
-
-  - normal，根据浏览器默认的换行规则来决定是否进行换行。
-  - break-all，允许在单词内换行。
-  - keep-all， 只能在半角空格或连字符处换行。
+![换行](img/换行.png)
 
 
-#### 2.8、隐藏内容
+
+
+#### 2.8、溢出属性
 
 + 概念：overflow属性用于设置文本的隐藏的属性
++ 属性值：
 
-+ 语法：
+```css
+visible，溢出时显示。
+hidden，溢出时内容隐藏。
+scroll，溢出的内容滚动条显示。
+    注：
+        scroll属性不管文本有没有溢出横向、竖向都有滚动条
+        滚动条会影响文字显示位置，(滚动条会占据空间)
+auto，浏览器自己决定。（通常具有不确定性）
 
-  ```css
-  div { 
-  	width: 50px;
-  	height: 50px;
-  	border: aqua solid 1px;
-  	overflow: auto;
-  }
-  ```
+overflow-x:;    设置横向的溢出显示效果(一般在全局设置，让body没有横向滚动条)
+overflow-y:;    设置纵向的溢出显示效果
+```
 
-  - visible，超出元素框的内容是可见的。
-  - hidden，超出元素框的内容隐藏。
-  - scroll，多出的内容滚动条显示。
-  - auto，浏览器自己决定。（通常具有不确定性）
 
-#### 2.9、行间距
+
+#### 2.9、行间距(行高)
 
 + 概念：line-height 属性用于设置行间的距离（行高），可以控制文字行与行之间的距离
+  + **行高测量方法**：从上一行顶部到下一行顶部
+  + **字体大小测量方法**：按大的来(做项目的时候会有)
+
+> 注：
+>
+> 确定了高度，行高不会对下面的内容产生影响,当行高超出父元素高度后，会**溢出显示**；
+>
+> 行高越大，文字中间的空隙越大，当**行高等于文字大小**时，多行文字会贴在一起显示，上下行之间的空隙会消失；
+>
+> 文本是由**默认行高**决定的，默认行高不是固定的，而是根据字体大小显示的
 
 + 语法：
 
@@ -1225,7 +1268,7 @@ body {font: font-style  font-weight  font-size/line-height  font-family;}
 
 + 作用：
 
-  + 使单行文字在垂直区域居中---》**让文字的行高等于盒子的高度**。
+  + 使**单行文字**在垂直区域居中--->**让文字的行高等于盒子的高度**。
 
     ```html
     <!DOCTYPE html>
@@ -1260,6 +1303,44 @@ body {font: font-style  font-weight  font-size/line-height  font-family;}
     - 中线：蓝色的线。
     - 基线：红色的线。
     - 底线：紫红色的线。
+
+
+
+#### 2.10、单行文本溢出显示省略号
+
+* 语法：
+
+```css
+text-overflow:;
+ 	ellipsis    溢出时进行裁切并且显示省略号
+	 clip       溢出只能进行裁切，不显示省略号
+```
+
+* 显示省略号方法：
+
+```css
+<style>{
+    .list li {
+    width: 212px;
+    font-size: 12px;
+    line-height: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
+```
+
+* 说明：
+
+> 1、 text-overflow: ellipsis;只有显示省略号的功能，没有其他效果
+> 2、如果想实现溢出显示省略号的话，需要以下几个属性：
+>  -> width    设置宽度的显示范围
+>  -> white-space: nowrap; 强制显示在一行
+>  -> overflow: hidden;    溢出的文字隐藏
+>  -> text-overflow: ellipsis;溢出显示省略号
+
+
 
 ### 3、CSS列表属性
 
