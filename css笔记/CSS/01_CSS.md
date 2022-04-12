@@ -999,7 +999,7 @@ CSS中的继承: 子标签会继承父标签的某些样式，如文本颜色和
 > 注：一般英文网站或者是中英文混排是会使用；用的少；
 >     	只针对小写字母起作用
 
-#### 1.5、字体
+#### 1.5、字体族
 
 + 概念： 我们认为的"字体"可能不是单纯的一个字体，而是由许多字体变形组成，分别用来描述粗体、斜 体、正常字体等等每种变体都有一个具体的字体风格。所以我们电脑中安装的字体有可能是一个字体系列(字体族)，而不是单纯的字体。
 
@@ -1014,6 +1014,7 @@ CSS中的继承: 子标签会继承父标签的某些样式，如文本颜色和
 + 说明：
 
   + 我们在写的时候一般使用的是字体的英文名字，为了规避乱码的风险。
+  + 用**逗号隔开** 
   + 设定的字体如果名字包含**汉字、多个英文单词、Unicode编码**，则应该使用单引号包裹起来。
   + 可以定义多个字体，多个字体将按照列表中列出来顺序逐个查找，只要找到了一个就去应用如果到最后都没有找到name将会使用浏览器的默认字体（windows系统中，默认的字体就是微软雅黑）。
   
@@ -1110,7 +1111,7 @@ body {font: font-style  font-weight  font-size/line-height  font-family;}
 
 #### 2.3、垂直对齐
 
-+ 概念：vertical-align属性用于设置元素内文本内容的垂直对齐方式(没有继承性，写给谁谁生效)
++ 概念：vertical-align属性用于设置元素内文本内容的垂直对齐方式(没有继承性，**写给谁谁生效)**
 
 + 语法：
 
@@ -1193,17 +1194,26 @@ text-decoration-style: ;
 + 语法：
 
   ```css
-  letter-spacing:value; /*定义字母/汉字之间的距离*/
-
-  word-spacing:value; /*定义单词之间的间隔*/
+  letter-spacing:value; 
+	/*
+  		1、设置字和字、字母和字母之间的间距
+    		2、支持负值，绝对值越大，越紧凑
+	*/
+  
+  word-spacing:value; 
+  	/*
+  		1、定义英文单词之间的间隔
+  		2、对中文不生效！
+  		3、支持负值
+  	*/
   ```
-
+  
   - normal，相当于`letter-spacing:0`
   - px，像素
 
 #### 2.7、换行(剩余空间显示)
 
-+ 概念：white-space属性用于设置文本的换行的属性
++ 概念：**white-space**属性用于设置文本的换行的属性(**设置页面的换行和空格是否被浏览器解析**)
 + 属性值：
 
 ```css
@@ -1216,6 +1226,15 @@ nowrap：	 文本不会换行，文本会在同一行上继续，直到遇到<br
 
 ![换行](img/换行.png)
 
+**换行属性：word-break** 
+
+```css
+word-break:;
+    normal      根据浏览器默认显示是否换行
+    break-all   允许在单词内换行
+    keep-all    允许在半角、连接符、空格位置换行
+```
+
 
 
 
@@ -1225,7 +1244,7 @@ nowrap：	 文本不会换行，文本会在同一行上继续，直到遇到<br
 + 属性值：
 
 ```css
-visible，溢出时显示。
+visible，溢出时显示。(默认值)
 hidden，溢出时内容隐藏。
 scroll，溢出的内容滚动条显示。
     注：
@@ -1331,7 +1350,7 @@ text-overflow:;
 </style>
 ```
 
-* 说明：
+* **说明：**
 
 > 1、 text-overflow: ellipsis;只有显示省略号的功能，没有其他效果
 > 2、如果想实现溢出显示省略号的话，需要以下几个属性：
@@ -1350,7 +1369,8 @@ text-overflow:;
 
 - none：不显示前面的标识，当为none时不会阻断有序列表的计算。
 - square：实心方块。
-- disc：圆形。
+- disc：实心圆形(默认)
+- circle:空心圆
 - decimal：数字
 - lower-roman：小写罗马字
 - upper-roman：大写罗马字
@@ -1372,8 +1392,11 @@ text-overflow:;
 
 格式：`list-style:type image position` 
 
-> 最常见的列表属性设置
-> list-style: none;
+> 最常见的列表属性设置：**list-style: none;**
+>
+> 如果我们需要使用列表符号，我们会通过背景图的形式添加；
+>
+> 我们在写列表的时候都不会用列表自身的列表符号，都会给取消掉。
 
 顺序可以颠倒
 
@@ -1401,7 +1424,7 @@ text-overflow:;
 
   + `transparent`，默认值（透明）。元素的默认背景色是透明的包括html和body标签。
 
-    解释为什么整个页面看起来是白色的，不是transparent吗？
+解释为什么整个页面看起来是白色的，不是transparent吗？
 
     1. body和html并不是整个页面，body由内容撑开，html由body撑开。
     2. 整个的层次：`body -> html -> 页面画布`
@@ -1410,7 +1433,7 @@ text-overflow:;
 
 #### 4.2、背景图片
 
-+ 概念： background-image 定义元素的背景图片
++ 概念： background-image 定义元素的**背景**图片
 
 + 语法：
 
@@ -1424,6 +1447,17 @@ text-overflow:;
   | url  | 使用绝对或者相对地址指定背景图像 |
 
 > 注意：背景图片后面的地址，千万不要忘记加 URL， 同时里面的路径**不要加引号**。
+>
+> **网页的图片形式：**
+>
+> ​	-> 插入图片：是结构里的标签，是占位置的，默认情况下插入图片的上面不可以插入其他内容
+> ​	->  背景图：是属于css的一种修饰性的存在，主要是为了修饰用的，不占html结构的位置，在背景图上可以放其他东西
+>
+> **背景图显示规则：**
+>     -> 当背景图的尺寸大于元素大小时，背景图会平铺，知道把元素铺满为止
+>     -> 当背景图的尺寸等于元素大小时，背景图会完全显示，且只有一张
+>     -> 当背景图的尺寸小于元素大小时，只能看到元素大小范围内的背景图
+>     -> 背景图片默认显示在元素左上角；
 
 #### 4.3、背景平铺
 
@@ -1442,6 +1476,10 @@ text-overflow:;
   | repeat-x  | 背景图像在横向上平铺        |
   | repeat-y  | 背景图像在纵向上平铺        |
 
+> 注：repeat-x可以做背景图的**渐变**效果
+>     1、用ps截出 等高、一个像素宽的图片
+>     2、设置为背景图，x轴平铺
+
 #### 4.4、背景图片位置
 
 + 概念：background-position 属性可以改变图片在背景中的位置
@@ -1458,6 +1496,32 @@ text-overflow:;
   | -------- | ---------------------------------------- |
   | length   | 百分数\|由浮点数和单位标识符组成的长度值                    |
   | position | top \| center \| bottom \| left \| center \| right |
+
+
+> 复合式属性：
+>     background-position:x y;
+>
+> ​    **注：**x和y的位置不能互换；
+> ​    		如果只写一个，第二个默认居中；
+> ​    		负值是向左/向上；
+>
+> 单一设置：
+>     background-position-x:;
+>     background-position-y:;
+>
+> x   背景图在x轴上的显示位置
+>     属性值：
+>         1、数值+单位： px   支持负值；
+>         2、法定属性值：left right center
+>         3、默认值：left或0
+>
+> y   背景图在y轴上的显示位置
+>     属性值：
+>         1、数值+单位： px   支持负值；
+>         2、法定属性值：top bottom center
+>         3、默认值：top或0
+
+
 
   **其他说明：**
 
@@ -1494,9 +1558,14 @@ text-overflow:;
   | scroll | 背景图像是随着对象内容滚动 |
   | fixed  | 背景图像固定        |
 
-  **其他说明：**
+  > 其他说明：
+>
+  >  background-attachment 后期可以制作视差滚动的效果。
+  >
+  > -> 设置背景图是否跟随滚动条滚动
+  > -> 当设置了fixed之后，背景图片的参照物就发生了变化，就相对浏览器的可视窗口显示图片的位置了；
 
-   background-attachment 后期可以制作视差滚动的效果。
+  
 
 #### 4.6、背景样式合写
 
@@ -1537,28 +1606,157 @@ text-overflow:;
 | 背景简写                  | 书写更加简单  | 背景颜色 背景图片地址 背景平铺 背景滚动 背景位置         |
 | 背景色半透明                | 背景颜色半透明 | background：rgba（0,0,0,0.3）；后面是四个值  |
 
+#### 4.9、PS切图
+
+> 网页上使用的图片，都是储存为web所用格式；会自动优化图片体积
+> ps切图
+>     1、保存单张图的方法：
+>         	先用**选框工具**把图片框选起来
+>            	 -> ctrl + c  复制
+>            	 -> ctrl + n  新建(新建一个一样大小的文件)  
+>           	  -> ctrl + v  粘贴
+>             存储为web所用格式
+>                 -> ctrl + alt + shift + s
+>                 -> 文件=>导出=>储存为web格式
+>             储存 - 选保存的位置 - 改名字
+>     2、保存多张图片的方法    
+>        	 用**切片工具**把图片框选上
+>        	 然后 储存为web所用格式
+>            	 -> ctrl + alt + shift + s
+>            	 -> 文件=>导出=>储存为web格式
+>         	按住shift进行多选切片
+>         	保存
+>           	  ->  把切片改为选中的切片
+>           	  ->  改名字
+>        	 如果保存的位置有images文件，就会自动保存在这个文件里
+>        	 如果没有，就会自动生成一个images文件夹；
+
+
+
 ### 5、CSS表格属性
 
-| CSS 属性名         | 功能           | 属性值                                      |
-| --------------- | ------------ | ---------------------------------------- |
-| table-layout    | 定义列宽度        | auto：自动，列宽根据内容计算。<br>fixed：固定列宽（不指定宽平均分） |
-| border-collapse | 合并单元格边框      | collapse：合并                              |
-| border-spacing  | 单元格间距        | 长度<br>生效的前提：单元格边框不能合并                    |
-| empty-cells     | 用于隐藏没有内容的单元格 | show：显示，默认<br>hide：隐藏<br>生效前提：单元格不能合并    |
-| caption-side    | 设置表格标题位置     | top：在表格上面，默认<br>bottom：在表格下面             |
+| CSS 属性名          | 功能                     | 属性值                                                       |
+| ------------------- | ------------------------ | ------------------------------------------------------------ |
+| table-layout        | 定义列宽度               | auto：自动，列宽根据内容计算。<br>fixed：固定列宽（不指定宽平均分） |
+| **border-collapse** | 合并单元格边框           | collapse：合并                                               |
+| **border-spacing**  | 单元格间距               | 长度<br>生效的前提：单元格边框不能合并                       |
+| empty-cells         | 用于隐藏没有内容的单元格 | show：显示，默认<br>hide：隐藏<br>生效前提：单元格不能合并   |
+| caption-side        | 设置表格标题位置         | top：在表格上面，默认<br>bottom：在表格下面                  |
 
 > **注意：**
 >
 > 以上 5 个 css 属性设置给 table 元素才有用，给其他元素无效。
+>
+> border-spacing    设置单元格和单元格之间的间距	等同于html里的cellspacing;
+>
+> padding				 设置单元格和内容之间的间距		等同于html里的cellpadding;
 
 ### 6、CSS鼠标属性
 
 | CSS 属性名 | 功能               | 属性值                                                       |
 | ---------- | ------------------ | ------------------------------------------------------------ |
-| cursor     | 设置鼠标光标的样式 | pointer：   小手<br>move：      移动图标<br>text:            文字选择器 <br>crosshair:   十字架  <br>wait:            等待 |
+| cursor     | 设置鼠标光标的样式 | pointer：   小手<br>move：      移动图标<br>text:            文字选择器 <br>crosshair:   十字架  <br>wait:            等待  <br> help            帮助 |
 
 ```css
  /* 自定义鼠标光标 */
  cursor: url(images/arrow.ico),pointer;
+```
+
+使用方式：
+
+```css
+<style>
+     img {
+         cursor: wait;
+     }
+ </style>
+```
+
+
+
+### 7、透明度属性
+
+> opacity:number;
+>     **注：**属性值不加单位
+>         	取值范围：0 - 1 ，0代表完全透明；1代表完全不透明
+>         	小数点的前面的0可以省略； 0.5   .5
+>
+> ​			该属性**不兼容**低版本浏览器；IE8及一下；
+> ​	解决办法：
+> ​			添加代码： filter:alpha(opacity=number);
+> ​			number取值范围：0-100，
+>
+> opacity 和 rgba()的**区别**；
+>         opacity：里面所有的元素都会显示透明
+>         rgba():  是设置谁就透明
+
+兼容性案例：
+
+```css
+<style>
+    .box {
+        width: 500px;
+        height: 300px;
+        background: url(./../../images/1.jpg) no-repeat center red;
+        opacity: .5;
+        /* opacity兼容ie低版本浏览器 */
+        filter:alpha(opacity=50);
+    }
+```
+
+
+
+### 8、隐藏属性
+
+> 隐藏元素属性：
+>     visibility:;
+>         visible     显示(默认值)
+>         hidden      隐藏
+>     **注：元素隐藏，但保留位置；**
+
+
+
+### 9、 属性的继承性
+
+```css
+不可继承的：display、margin、border、padding、background、height、min-height、max-height、min-width、max-width、overflow、position、left、right、top、 bottom、z-index、float、clear、table-layout、vertical-align
+
+所有元素可继承：visibility和cursor。
+
+内联元素可继承：letter-spacing、word-spacing、line-height、color、font、 font-family、font-size、font-style、font-variant、font-weight、text-decoration、text-transform。
+
+块状元素可继承：text-indent和text-align
+
+列表元素可继承：list-style、list-style-type、list-style-position、list-style-image。
+
+表格元素可继承：border-collapse、border-spacing
+```
+
+总结：
+
+> 一般设置**结构样式**的属性都**不能**继承
+> 一般设置**文本样式**的属性都**可以**继承
+
+
+
+### 10、 最大/小高度，最大/小宽度
+
+```css
+ min-height  设置元素的最小高度
+ max-height  设置元素的最大高度
+ min-width   设置元素的最小宽度
+ max-width   设置元素的最大宽度
+ 注：一般使用以上属性的时候不会跟width和height一起使用；
+```
+
+
+
+### 11、 设置英文字母大小写
+
+```css
+text-transform:;
+    capitalize   设置首字母为大写
+    uppercase    显示为大写字母
+    lowercase    显示为小写字母
 ```
 

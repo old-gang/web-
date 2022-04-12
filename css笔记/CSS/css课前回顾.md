@@ -135,3 +135,88 @@ css属性-文本属性：
                 small-caps  小型的大写字母
 ```
 
+
+
+## day08
+
+```css
+字体族：
+    font-family:字体1，字体1，……；
+字体的复合式属性:
+    包含了：
+        font-weight:;
+        font-style:;
+        font-size:;
+        font-family:;
+        font-variant:;
+        line-height:;
+    使用复合式属性的条件：
+        ->同时具有size和family
+        ->size和family要写在最后的位置
+        ->line-height要写在size后 用 / 隔开 size/line-height
+对齐：
+    水平对齐：
+        text-align:;
+            left    左对齐
+            right   右对齐
+            center  居中对齐
+            justify 两端对齐(对最后一行文本不去左右)
+            text-align-last:;   最后一行
+    垂直对齐：
+        vertical-align:
+            middle  居中
+            top     顶对齐
+            bottom  底对齐(可以取消有文字是插入图片下端有间隙的
+            baseline基线对齐(默认值) 
+            super   上标
+            sub     下表
+            text-top 跟文本顶端对齐
+            text-bottom 跟文本底端对齐
+行高：
+    ling-height:value;
+        默认时，文本有自带行高，文本的1.3倍左右
+文本修饰：
+    text-decoration:underline red dashed;
+        text-decoration-line:;
+            none            取消修饰(默认值)
+            underline       下划线
+            overline        上划线
+            line-through    删除线
+        text-decoration-color:;
+        默认和文本颜色统一
+        text-decoration-style:;
+            solid   实线(默认值)
+            dashed  虚线
+            dotted  点线
+            double  双线
+首行缩进：
+    text-indent:value;
+        ->只针对第一行起作用
+        ->支持负值
+字间距：
+    letter-spacing:value(数值);
+        ->支持负值
+        ->设置汉字和汉字以及字母和字母之间
+词间距：
+    word-spacing:value;
+        ->支持负值
+        ->主要设置单词和单词之间的间距
+空余空间：
+    white-space:;
+        ->normal    (默认值，浏览器会忽略空格和换行)
+        ->nowrap    强制文本在一行显示
+单行文本溢出显示省略号：
+    width:;
+    overflow:hidden;
+    white-space:nowrap;
+    text-ovreflow:ellipsis;
+文本溢出：
+    overflow:;
+        visible 溢出显示(默认值)
+        hidden  溢出隐藏
+        scroll  溢出显示滚动条
+        auto    如果溢出则显示滚动条
+    overflow-x:;
+    overflow-y:;
+```
+
