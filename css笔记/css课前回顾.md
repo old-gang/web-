@@ -220,3 +220,86 @@ css属性-文本属性：
     overflow-y:;
 ```
 
+
+
+## day09
+
+```css
+透明度 opacity:number;  number的取值范围 0  -  1;
+
+ps的切图:
+    单张图
+    多张图
+    
+网页常用的图片格式
+    jpg  不支持透明图，适用于色彩比较丰富的图片
+    png  支持透明图，适用于色彩数量比较少的图片
+    gif  支持透明图，支持动图，适用于色彩数量比较少的图片
+
+隐藏元素属性
+    visibility:;
+        visible  显示（默认值）
+        hidden   隐藏，不显示 元素隐藏，但是位置保留
+    visibility:hidden; 和opacity:0的效果一样
+    overflow:hidden;  溢出隐藏，当内容溢出元素以外的时候，移出去的那部分会被隐藏；             
+具有继承性的属性
+    设置文本类的属性大部分都可以继承
+    设置结构的属性大部分都不能继承
+
+    text-indent和text-align是块元素能继承；
+
+表格属性:
+    单元格之间间距：border-spacing:value;   
+    合并相邻单元格边框： border-collapse:collapse; 相当于让单元格之间合体，共用一个边框；
+    设置单元格固定宽：
+        table-layout:;
+            auto    自由显示宽度（默认值）
+            fixed   宽度固定，平均分配
+    隐藏无内容单元格：
+        empty-cells:;
+            show 显示（默认值）
+            hide 隐藏 ，不显示
+            注：什么内容以及标签都没有，包括空格符也没有；
+    表格标题位置：
+        caption-side:;
+            top   显示在表格的上方 （默认值）
+            bottom 显示在表格的下方
+
+背景属性
+    复合式写法:background:;
+        背景色： background-color:;
+        背景图： background-image:url();
+        背景图平铺属性：
+            background-repeat:;
+                repeat  平铺（默认值）
+                repeat-x   横向平铺
+                repeat-y   纵向平铺
+                no-repeat  不平铺
+        背景图位置属性：
+            复合式属性：
+             background-position:x y;
+                默认值都是 0； 
+                如果只写一个值，那么这个值表示的水平位置（x）的距离，垂直方向会以center显示；
+                    background-position:center;
+                background-position-x:;
+                background-position-y:;
+                注：支持负值；
+        背景图固定属性：
+            background-attachment:;
+                scroll  滚动（默认值）
+                fixed   固定，不跟随滚动条滚动
+                当设置了背景图固定了，那么他的显示位置会发生变化；会相对浏览器的可视窗口显示图片的位置；
+
+换行属性
+    word-break:;
+        normal  默认值，跟距浏览器默认效果折行
+        break-all  折行显示，允许在单词内部折行
+        keep-all 在半角以及连接符（-）和空格的地方折行
+
+列表属性
+    list-style:none;取消列表符号
+
+鼠标指针
+    cursor:pointer; 手型
+```
+
