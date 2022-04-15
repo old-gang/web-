@@ -303,3 +303,108 @@ ps的切图:
     cursor:pointer; 手型
 ```
 
+
+
+## day10
+
+```css
+ 一、盒子模型：设置元素和元素之间的位置关系；
+盒模型的组成：content（内容区）、padding（填充区）、border（边框区）、margin（外边距）
+content（内容区）：表示显示内容的区域；
+    主要作用：显示内容的地方；
+padding（填充区）：显示在内容区和边框区之间的空白区；
+    主要作用：设置父元素和子元素之间的间距；
+    说明：
+        -> 在标准盒模型里，padding值会撑大元素的宽高，如果想保证元素原本的大小不变，需要在宽高上减掉相应的padding值；
+        -> 在没有给元素添加宽度的时候，所添加的padding的左右和margin的左右的值就不用减；
+        -> padding对背景不起作用，padding区是会显示背景的；
+    使用方法：
+        复合式：padding:10px 20px 30px 40px;
+        单一设置：
+            padding-top:;
+            padding-right:;
+            padding-bottom:;
+            padding-left:;
+border（边框区） ：显示在盒子边缘的区域；
+    主要作用：设置网页上一些修饰性的线条；
+    说明：边框也会把元素原本的宽高撑大，如果想保持原本大小不变，需在原有宽高上减掉相应的border值；
+    使用方法：
+        复合式：
+            border:width color style;
+                border-right:width color style;
+                border-top:width color style;
+                border-bottom:width color style;
+                border-left:width color style;
+        单一设置：
+            border-width:;
+                border-top-width:;
+                border-right-width:;
+                border-bottom-width:;
+                border-left-width:;
+            border-color:;
+                border-top-color:;
+                border-right-color:;
+                border-bottom-color:;
+                border-left-color:;
+            border-style:;
+                border-top-style:;
+                border-right-style:;
+                border-bottom-style:;
+                border-left-style:;
+margin（外边距） ：显示在边框以外的空白区；
+    主要作用：同辈元素之间的间距；
+    说明：不会把元素原本的宽高撑大，但是也会占位置；
+    使用方法：
+        复合式：
+            margin:10px 20px 30px 40px;
+        单一设置：
+            margin-top:;
+            margin-right:;
+            margin-bottom:;
+            margin-left:;
+    注：margin可以设置负值；
+        margin的属性值还有auto；auto 表示自由显示（自动分配）；
+        margin：0 auto; 设置块元素水平居中
+    margin的bug：
+        1、两个元素上下之间的margin值会重叠，根据做大的值显示；
+        2、元素内，第一个子元素的margin-top会向上传递给父元素；（overflow：hidden可以解决此问题）
+标准盒模型实际占有大小的计算：
+    标准盒模型的实际占有大小 =  content + padding + border + margin 
+怪异盒模型实际占有大小的计算：
+    怪异盒模型的实际占有大小 = width/height(content + padding +border) + margin
+                
+设置元素所遵循的盒模型规则属性：
+    box-sizing:;
+        content-box  遵循标准盒模型的显示规则
+        border-box   遵循怪异盒模型的显示规则
+ 二、元素类型：
+块状元素：
+    1、可以直接定义宽高
+    2、独占一行，自上而下排列
+    3、可以作为容器使用（p和h1 - h6除外，他们是不可以容纳其他块元素的；）
+    4、严格遵循盒模型的显示规则
+    5、常见的块元素：div table caption hr ul li ol dt dd dl form...
+行内元素：
+    1、默认不能定义宽高
+    2、像文本一样，自左向右排列；
+    3、遵循盒模型的显示规则，但是不能直接定义padding-top/bottom,margin-top/bottom,border-top/bottom，他们的显示时不正确的；
+    4、常见的行内元素：a b strong i em sub sup ins del span img...
+行内块元素：
+    1、可以直接定义宽高
+    2、像文本一样，自左向右排列；
+    3、严格遵循盒模型的显示规则
+    4、常见的行内块元素：button ，input ，textarea ，select ，td , th...
+    （了解即可）
+     img 、input... 属于置换元素；默认具有宽高比;所显示的内容是通过属性添加的；
+转换元素原本的元素类型的属性：
+    display:;
+        none   不显示元素类型，隐藏元素
+        block  显示为块状元素
+        inline 显示为行内元素
+        inline-block 显示为行内块元素；
+        了解即可：
+            list-item  显示为列表的元素类型
+            table      显示为表格的元素类型
+            table-cell 显示为td或者th的元素类型
+```
+
