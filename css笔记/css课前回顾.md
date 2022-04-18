@@ -465,3 +465,35 @@ margin（外边距） ：显示在边框以外的空白区；
             
 ```
 
+
+
+## day12
+
+> bfc：独立的渲染区域，块级格式化上下文；
+>
+> bfc的布局原则：
+>     1、bfc区域里的块元素会自上而下一个接一个的排列；
+>
+> ​    2、bfc区域里盒子的距离由margin决定，俩盒子相邻的上下margin会重叠；以最大值显示
+>
+> ；
+>     3、每个元素的margin-left,和包含块的左边边缘相接触；
+>
+> ​    4、计算bfc的高度时，会把浮动元素计算在内；
+>
+> ​    5、bfc是一个独立的容器，bfc里面的内容不会影响他外面的元素；
+>
+> ​    6、bfc区域不会被浮动元素所覆盖；
+>
+> 开启bfc的条件：
+>     1、html是一个大bfc区域；
+>
+> ​    2、float不为none；
+>
+> ​    3、overflow不为visible；
+>
+> ​    4、position为absolute和fixed时；
+>
+> ​    5、display为inline-block, table-cell, table-caption, flex, inline-flex;
+>
+> 通过bfc解决高度塌陷的问题以及自适应两栏布局等问题；
