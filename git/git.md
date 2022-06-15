@@ -627,7 +627,7 @@ git commit -m "注释"
 5. 推送到远程
 
 ```shell
-git push origin master
+git push origin master  (一般直接git push即可，clone的时候会自动关联)
 ```
 
 > 克隆代码之后，本地仓库会默认有一个远程地址的配置，名字为origin
@@ -744,6 +744,10 @@ git push origin master
 ##### 冲突解决
 
 同分支冲突一样的处理，将代码调整成最终的样式，提交代码即可。
+
+- 定位冲突位置  git status
+- 改成最终想要的为止；
+- git add    git commit -m''
 
 
 
@@ -1092,6 +1096,7 @@ git push origin master -f
 ```shell
 git pull origin master --allow-unrelated-histories
 # --allow-unrelated-histories 允许没有相同历史的合并
+# 这里的origin 是别名 必要时可以更改；
 git push origin master
 ```
 
@@ -1130,3 +1135,4 @@ git config --unset user.name
 git config --unset user.email
 ```
 
+工作的时候git的账号和密码用的是公司发的，第一次要卸载记住密码的配置，输入一次之后再设置记住密码；
